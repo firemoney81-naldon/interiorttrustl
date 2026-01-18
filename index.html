@@ -1,23 +1,423 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- JSON-LD (Schema Markup) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "30평대 인테리어 비용 견적 가이드",
+      "description": "30평대 아파트 인테리어에 대한 포괄적인 정보를 제공합니다.",
+      "mainEntity": {
+        "@type": "HowTo",
+        "name": "30평대 인테리어 프로젝트 가이드",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "계획 및 예산 설정",
+            "text": "인테리어 범위와 예산을 설정합니다."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "전문가 상담 및 견적 비교",
+            "text": "여러 인테리어 업체의 견적을 비교하고 선택합니다."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "시공 및 관리",
+            "text": "계획된 일정에 따라 공사를 진행하고 관리합니다."
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+        /* 기본 스타일 초기화 */
+        body { font-family: 'Noto Sans KR', 'Segoe UI', sans-serif; margin: 0; padding: 0; line-height: 1.8; color: #333; background-color: #f8f8f8; }
+        * { box-sizing: border-box; }
+
+        /* 헤더 스타일 */
+        header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 5px solid #ffba08; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        header h1 { font-size: 2.5rem; color: #2c3e50; margin: 0; line-height: 1.4; font-weight: 700; }
+        header p { font-size: 1.2rem; color: #555; margin-top: 10px; font-weight: 300; }
+        .cta-btn { background: #ffba08; padding: 15px 30px; color: #111; text-decoration: none; font-weight: 700; border-radius: 8px; display: inline-block; margin-top: 20px; font-size: 1.1rem; transition: background-color 0.3s ease; }
+        .cta-btn:hover { background-color: #e6a807; }
+
+        /* 네비게이션 스타일 */
+        nav { margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav a { margin: 5px 15px; color: #555; text-decoration: none; font-size: 1rem; font-weight: 500; padding: 5px 0; border-bottom: 2px solid transparent; transition: border-bottom 0.3s ease, color 0.3s ease; }
+        nav a:hover { color: #ffba08; border-bottom: 2px solid #ffba08; }
+
+        /* 메인 콘텐츠 영역 */
+        main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        section { background-color: #fff; padding: 30px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        h2 { font-size: 2rem; color: #2c3e50; border-bottom: 3px solid #f2f2f2; padding-bottom: 15px; margin-bottom: 20px; font-weight: 700; }
+        h3 { font-size: 1.5rem; color: #444; margin-top: 25px; margin-bottom: 15px; font-weight: 600; }
+        h4 { font-size: 1.3rem; color: #555; margin-top: 20px; font-weight: 600; }
+
+        /* 텍스트 내용 스타일링 */
+        p { margin-bottom: 15px; font-size: 1rem; color: #444; line-height: 1.8; text-align: justify; }
+        ul { list-style: none; padding-left: 0; margin-bottom: 20px; }
+        ul li { margin-bottom: 10px; background-color: #fafafa; padding: 12px 15px; border-left: 3px solid #ffba08; border-radius: 4px; font-size: 1rem; line-height: 1.6; color: #444; }
+
+        /* 표 스타일 */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; line-height: 1.6; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #f0f4f7; color: #333; font-weight: 600; }
+        td { background-color: #ffffff; color: #555; }
+
+        /* 폼 스타일 */
+        form { background-color: #fcfcfc; padding: 30px; border-radius: 8px; border: 1px solid #eee; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 1rem; }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; transition: border-color 0.3s ease; }
+        input[type="range"] { width: 100%; margin-top: 10px; }
+        input[type="text"]:focus, select:focus, textarea:focus { border-color: #ffba08; outline: none; box-shadow: 0 0 5px rgba(255,186,8,0.2); }
+        button[type="submit"] { background: #2c3e50; color: #fff; border: none; padding: 15px; border-radius: 5px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; width: 100%; }
+        button[type="submit"]:hover { background-color: #34495e; }
+
+        /* 키워드 섹션 */
+        .keyword-group { margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 6px; border: 1px solid #eee; }
+        .keyword-group h4 { margin-top: 0; margin-bottom: 10px; color: #ffba08; }
+        .keyword-list { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.9rem; }
+        .keyword-list span { background-color: #f0f0f0; padding: 5px 10px; border-radius: 3px; color: #555; }
+
+        /* 그래프 및 시각화 요소 */
+        .chart-container { background-color: #f7f7f7; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .chart-legend { margin-top: 15px; font-size: 0.9rem; color: #666; display: flex; justify-content: center; gap: 20px; }
+        .chart-legend span { display: flex; align-items: center; }
+        .chart-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 5px; border-radius: 50%; }
+        .legend-turnkey::before { background-color: #3498db; }
+        .legend-semiself::before { background-color: #2ecc71; }
+
+        /* 외부 링크 스타일 */
+        .external-link { color: #0077c2; text-decoration: underline; transition: color 0.3s ease; }
+        .external-link:hover { color: #005691; }
+
+        /* 푸터 스타일 */
+        footer { background-color: #2c3e50; color: #ddd; text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: 40px; }
+        footer .footer-info { max-width: 1000px; margin: 0 auto; line-height: 1.6; }
+        footer a { color: #ffba08; text-decoration: none; }
+
+        /* 모바일 반응형 디자인 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            section { padding: 20px; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.3rem; }
+            .keyword-list { justify-content: center; }
+            nav a { margin: 5px 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 섹션: 핵심 키워드 및 CTA -->
+    <header>
+        <h1>30평대 인테리어 비용 & 견적 완벽 가이드</h1>
+        <p>2026년 최신 트렌드 반영! 평당 가격부터 저렴하게 잘하는 곳 추천까지</p>
+        <a href="#quote-form" class="cta-btn">무료 맞춤 견적 상담 신청</a>
+        <nav>
+            <a href="#guide">인테리어 가이드</a>
+            <a href="#cost">비용 분석</a>
+            <a href="#style">스타일 제안</a>
+            <a href="#keyword-analysis">키워드 분석</a>
+            <a href="#quote-form">견적 요청</a>
+        </nav>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
     <main>
-      <h1>Home page</h1>
+
+        <!-- 인테리어 가이드 섹션 -->
+        <section id="guide">
+            <h2>30평대 아파트 인테리어, 이것만 알면 성공!</h2>
+            <p>30평대 아파트는 대한민국에서 가장 일반적인 주거 형태로, 공간 활용과 효율성을 극대화하는 인테리어 전략이 중요합니다. 2026년 인테리어 트렌드는 단순히 미적인 부분을 넘어, 스마트 홈 기술 접목, 지속 가능한 소재 사용, 그리고 거주자의 라이프스타일에 맞춘 유연한 공간 구성에 초점이 맞춰져 있습니다. 특히 30평대는 가족 구성원의 변화에 따라 공간을 분리하거나 통합할 수 있는 가변성을 확보하는 것이 핵심입니다. 이 가이드는 30평대 아파트 리모델링을 계획하는 분들이 성공적인 결과를 얻을 수 있도록 상세한 정보를 제공합니다.</p>
+
+            <h3>1. 2026년 30평대 인테리어 트렌드 분석</h3>
+            <p>최근 인테리어 시장의 가장 큰 변화는 '스마트 리빙'입니다. 단순히 조명을 음성으로 제어하는 수준을 넘어, 에너지 효율성을 높이는 자동화 시스템과, 재택근무 증가에 따른 멀티 기능성 공간 구성이 필수가 되었습니다. 또한, 30평대 아파트의 주방은 단순히 요리 공간이 아니라 거실과 연결된 개방형 구조로 설계되어 가족이 함께 소통하는 커뮤니티 공간으로 진화하고 있습니다. 마감재 선택에 있어서는 우드톤과 화이트 컬러가 조합된 '웜 미니멀리즘'이 여전히 강세이며, 친환경적이면서도 질감을 살린 마감재(예: 스톤, 테라조)의 인기가 높아지고 있습니다.</p>
+
+            <h3>2. 인테리어 진행 절차: 반셀프 vs 턴키 (장단점 비교)</h3>
+            <p>인테리어를 진행하는 방식은 크게 '반셀프'와 '턴키(업체 일괄 위탁)'로 나뉩니다. 각 방식은 명확한 장단점을 가지고 있으며, 예산과 시간 투자 가능성에 따라 현명한 선택이 필요합니다.</p>
+
+            <h4>반셀프 인테리어</h4>
+            <p>반셀프는 소비자가 직접 설계와 자재 구매를 담당하고, 시공만 전문 기술자에게 맡기는 방식입니다. 비용 절감 효과가 크지만, 많은 시간과 노력이 필요하며 공정 관리에 대한 전문 지식이 필수적입니다. 공사 일정 조율에 실패할 경우 공사 기간이 길어지고 오히려 추가 비용이 발생할 수 있습니다. 30평대 반셀프 인테리어를 고려한다면, 최소 2~3개월의 준비 기간을 확보하고 각 공정별 전문가(목수, 타일공, 도배사 등) 섭외에 신중해야 합니다.</p>
+
+            <h4>턴키 인테리어 (업체 위탁)</h4>
+            <p>턴키는 인테리어 업체 한 곳에 모든 것을 맡기는 방식입니다. 기획부터 설계, 자재 수급, 시공, 사후관리까지 업체에서 책임지므로 가장 편리하고 완성도가 높습니다. 초보자에게 추천되며, 특히 30평대 아파트의 전체 리모델링을 진행할 경우 턴키가 공사 리스크를 줄이는 가장 좋은 방법입니다. 턴키의 단점은 반셀프에 비해 비용이 다소 높다는 점입니다.</p>
+
+            <h4>반셀프 vs 턴키 비교표</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>반셀프 (Semi-self)</th>
+                        <th>턴키 (Full Service)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>예상 비용 절감률</strong></td>
+                        <td>30~40% (재료 및 인건비)</td>
+                        <td>비용 절감 효과 낮음</td>
+                    </tr>
+                    <tr>
+                        <td><strong>시간/노력 투자</strong></td>
+                        <td>매우 높음 (주말 및 저녁 시간 필요)</td>
+                        <td>매우 낮음 (업체에 위임)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>시공 난이도</strong></td>
+                        <td>전문 지식 필수 (공정 이해 및 관리)</td>
+                        <td>업체 전문성 의존</td>
+                    </tr>
+                    <tr>
+                        <td><strong>추천 대상</strong></td>
+                        <td>인테리어 지식이 있고 시간 여유가 많은 분</td>
+                        <td>바쁜 직장인, 완성도를 중요시하는 분</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 비용 분석 섹션 -->
+        <section id="cost">
+            <h2>30평대 인테리어 비용: 평당 견적 및 상세 분석</h2>
+            <p>30평대 아파트 인테리어 비용은 천차만별입니다. 어떤 자재를 선택하고, 어느 정도의 범위를 리모델링하는지에 따라 총 금액이 크게 달라집니다. 2026년 기준으로 30평대 인테리어 평균 비용은 부분 인테리어의 경우 2천만원대에서 4천만원대, 전체 리모델링의 경우 5천만원대에서 8천만원대 사이로 형성되고 있습니다. 고급 자재를 사용한 하이엔드 인테리어의 경우 1억 원을 훌쩍 넘기기도 합니다. 아래 표는 일반적인 30평대 아파트 전체 인테리어 항목별 예상 비용(중급 기준)입니다.</p>
+
+            <h3>1. 인테리어 항목별 상세 비용 (예시)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>공정 항목</th>
+                        <th>예상 비용 비율 (%)</th>
+                        <th>세부 내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>주방 (Kitchen)</strong></td>
+                        <td>25%~35%</td>
+                        <td>싱크대, 상판, 수납장, 타일, 주방 가전(옵션)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>욕실 (Bathroom)</strong></td>
+                        <td>15%~20%</td>
+                        <td>타일, 위생도기, 수전, 방수 시공 (2개 기준)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>바닥 (Floor)</strong></td>
+                        <td>15%~20%</td>
+                        <td>강마루, 강화마루, SPC 마루, 타일 시공</td>
+                    </tr>
+                    <tr>
+                        <td><strong>벽체 (Wall)</strong></td>
+                        <td>10%~15%</td>
+                        <td>도배, 페인트, 아트월, 몰딩 시공</td>
+                    </tr>
+                    <tr>
+                        <td><strong>창호/샷시 (Window)</strong></td>
+                        <td>10%~15%</td>
+                        <td>단열 샷시 교체 (필수 항목, 단열에 중요)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>기타 (Lighting/etc)</strong></td>
+                        <td>5%~10%</td>
+                        <td>조명, 전기 배선, 철거/폐기물 처리, 가구(옵션)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. 30평대 인테리어 비용을 결정하는 요인</h3>
+            <p>30평대 인테리어 비용은 다음 세 가지 핵심 요인에 의해 크게 달라집니다.</p>
+            <ul>
+                <li><strong>범위(Scope):</strong> 부분 인테리어(예: 주방, 욕실만 수리)와 전체 인테리어(올 리모델링)의 비용 차이가 큽니다. 전체 인테리어의 경우 철거 및 폐기물 비용이 추가됩니다.</li>
+                <li><strong>자재 등급(Material Grade):</strong> 바닥재(강마루 vs 원목 마루), 주방 상판(PT 상판 vs 엔지니어드 스톤), 욕실 타일 등 자재 등급에 따라 비용이 2배 이상 차이 날 수 있습니다. '저렴한곳'을 찾는다면 자재 등급을 현실적으로 조정해야 합니다.</li>
+                <li><strong>업체 선정 방식:</strong> 턴키 방식은 편리한 만큼 인건비와 관리비가 포함되어 반셀프보다 30% 내외로 비용이 높습니다.</li>
+            </ul>
+
+            <h3>3. 전국 지역별 30평대 인테리어 평당 가격 비교 (2026년 기준)</h3>
+            <p>지역별 인건비와 자재 물류비 차이로 인해 인테리어 평당 가격이 달라집니다. 특히 서울 강남, 서초, 송파, 용산구 등 강남 3구 지역은 인테리어 업체 단가가 높습니다. 반면, 부산 해운대, 대구 수성구 등 대도시의 중심지 역시 시공비가 높게 형성되나, 상대적으로 성남, 수원, 용인, 화성 등 경기 남부 지역이나, 고양, 파주, 김포 등 경기 북부 지역은 합리적인 비용으로 시공이 가능한 곳이 많습니다. 대전, 광주, 울산, 청주, 천안 등 충청권이나 경남 창원, 전북 전주 지역은 상대적으로 인테리어 비용이 저렴한 편에 속합니다.</p>
+            <div class="chart-container">
+                <p style="font-size: 1.1rem; font-weight: bold;">[가상 그래프: 30평대 인테리어 평당 평균 비용 (2026년)]</p>
+                <!-- 실제 그래프 이미지 대신 텍스트 설명으로 대체 -->
+                <p><strong>서울 강남권:</strong> 150만원 ~ 250만원 (평당)<br><strong>수도권 일반:</strong> 120만원 ~ 180만원 (평당)<br><strong>지방 광역시:</strong> 100만원 ~ 150만원 (평당)</p>
+                <div class="chart-legend">
+                    <span class="legend-turnkey">턴키 인테리어</span>
+                    <span class="legend-semiself">반셀프 인테리어</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 인테리어 스타일 제안 섹션 -->
+        <section id="style">
+            <h2>30평대 아파트 인테리어 스타일 제안 (2026년 인기 순위)</h2>
+            <p>30평대는 다양한 스타일을 시도하기에 적합한 면적입니다. 최근 '내돈내산' 후기가 많은 인기 인테리어 스타일을 소개하며, 각 스타일별 '장단점'을 비교합니다.</p>
+
+            <h3>1. 모던 & 미니멀리즘 (화이트 인테리어)</h3>
+            <p>미니멀리즘은 불필요한 장식 요소를 제거하고 깔끔한 라인과 화이트, 베이지 등 무채색 계열을 주로 사용하는 스타일입니다. 좁아 보일 수 있는 공간을 시각적으로 넓어 보이게 하는 효과가 있어 30평대 인테리어에서 가장 선호되는 방식입니다. 특히 화이트 톤을 기본으로 하고 간접 조명을 활용하면 넓고 세련된 느낌을 줄 수 있습니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 깔끔하고 시원한 느낌, 공간 확장 효과, 유행을 타지 않음.</li>
+                <li><strong>단점:</strong> 밋밋하게 느껴질 수 있으며, 관리가 까다로울 수 있음 (때가 잘 탐).</li>
+            </ul>
+
+            <h3>2. 우드 & 내추럴 (북유럽 스타일)</h3>
+            <p>우드톤 인테리어는 따뜻하고 편안한 분위기를 연출합니다. 마루, 가구, 몰딩 등을 밝은 우드 컬러로 통일하여 자연스러운 감성을 강조하며, 플랜테리어(식물 인테리어)와 함께 했을 때 시너지가 높습니다. 특히 30평대 아파트 거실에 우드 소재를 활용하면 안정적이고 아늑한 공간을 만들 수 있습니다. '저렴하게' 북유럽 스타일을 연출하고 싶다면, 벽지는 화이트로 유지하고 가구와 소품에 우드를 활용하는 것이 좋습니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 따뜻하고 안정감 있는 분위기, 가족 친화적 공간 연출.</li>
+                <li><strong>단점:</strong> 자칫 올드하게 느껴지거나 좁아 보일 수 있음.</li>
+            </ul>
+
+            <h3>3. 프렌치 모던 (클래식)</h3>
+            <p>프렌치 모던 스타일은 몰딩, 웨인스코팅, 샹들리에 등 클래식한 요소를 현대적으로 재해석한 스타일입니다. 고급스럽고 우아한 분위기를 연출하며, 특히 30평대 침실이나 거실에 포인트를 줄 때 효과적입니다. 예산이 비교적 많이 필요한 스타일입니다. '30평대 인테리어' 검색 시 고급 시공을 원하는 고객들이 많이 찾는 스타일입니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 고급스럽고 개성 있는 공간 연출, 높은 시각적 만족도.</li>
+                <li><strong>단점:</strong> 시공 난이도가 높고, 자재 비용이 비쌈.</li>
+            </ul>
+        </section>
+
+        <!-- 키워드 분석 및 신뢰성 확보 섹션 -->
+        <section id="keyword-analysis">
+            <h2>30평대 인테리어 검색 키워드 분석 및 업체 선택 팁</h2>
+            <p>인테리어 업체 선정 시에는 단순히 가격만 비교하는 것이 아니라, 업체의 전문성, 시공 경험(포트폴리오), 그리고 고객 '후기' 등을 종합적으로 고려해야 합니다. 특히 '30평대 인테리어 잘하는곳'을 찾는다면, 다음 키워드들을 참고하여 검색해보는 것이 좋습니다.</p>
+
+            <h3>1. 자동완성 및 연관 키워드 분석</h3>
+            <p>사용자들이 인테리어 관련 검색 시 '함께 많이 찾는' 키워드는 주로 비용, 후기, 그리고 지역명입니다. 2026년 기준으로 검색량이 증가하는 키워드는 '30평대 인테리어 비용', '30평대 인테리어 견적', '평당 가격' 등이 있습니다.</p>
+            <div class="keyword-group">
+                <h4>핵심 및 롱테일 키워드 (지역명 포함)</h4>
+                <div class="keyword-list">
+                    <span>30평대 인테리어</span><span>30평대 아파트 리모델링</span><span>30평대 인테리어 비용</span><span>30평대 인테리어 견적</span><span>30평대 인테리어 잘하는곳</span><span>30평대 인테리어 후기</span><span>평당 가격</span><span>저렴한곳</span><span>내돈내산</span><span>순위 추천</span>
+                </div>
+                <h4>지역별 키워드 (전국)</h4>
+                <div class="keyword-list">
+                    <span>서울 30평대 인테리어</span><span>강남</span><span>송파</span><span>서초</span><span>마포</span><span>용산</span><span>분당</span><span>수원</span><span>성남</span><span>용인</span><span>고양</span><span>일산</span><span>파주</span><span>김포</span><span>화성</span><span>남양주</span><span>하남</span><span>광주</span><span>대전</span><span>천안</span><span>청주</span><span>세종</span><span>부산</span><span>해운대</span><span>대구</span><span>수성구</span><span>울산</span><span>광주</span><span>창원</span><span>제주</span><span>인천 송도</span><span>검단</span><span>동탄</span><span>판교</span><span>위례</span>
+                </div>
+                <h4>세부 키워드</h4>
+                <div class="keyword-list">
+                    <span>거실</span><span>주방</span><span>욕실</span><span>현관</span><span>샷시 교체</span><span>마루</span><span>도배</span><span>조명</span><span>가구</span><span>반셀프</span><span>턴키</span><span>장단점</span><span>차이점</span><span>비교</span><span>평균 금액</span>
+                </div>
+            </div>
+
+            <h3>2. 신뢰할 수 있는 업체 선정 기준</h3>
+            <ul>
+                <li><strong>포트폴리오 확인:</strong> 실제 시공 사례(특히 30평대 아파트)를 통해 업체의 스타일과 전문성을 확인합니다. '내돈내산' 후기가 많은지 확인하는 것이 중요합니다.</li>
+                <li><strong>사업자 등록 및 보험 여부:</strong> 건설업 등록증과 하자보증보험 가입 여부를 반드시 확인해야 합니다. 이는 시공 후 발생할 수 있는 문제에 대비하는 최소한의 안전장치입니다. (참고: 국토교통부 건설산업지식정보시스템)</li>
+                <li><strong>명확한 견적서:</strong> '예상 금액'이 아닌, 각 공정별로 상세 내역(자재명, 수량, 단가)이 명확히 기재된 견적서를 받아야 합니다.</li>
+            </ul>
+        </section>
+
+        <!-- 체류 시간 증대 요소: 인테리어 스타일 자가 진단 및 견적 계산기 -->
+        <section id="style-quiz">
+            <h2>인테리어 스타일 자가 진단 및 예상 견적 계산기</h2>
+            <p>나에게 맞는 인테리어 스타일을 찾고, 예상 비용을 간편하게 계산해 보세요. 아래 항목에 체크하면 30평대 인테리어에 필요한 정보를 얻을 수 있습니다.</p>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label><strong>1. 선호하는 공간 분위기는?</strong></label>
+                    <input type="radio" name="style_preference" value="minimal" id="style1"><label for="style1"> 깔끔하고 넓어 보이는 화이트 모던</label><br>
+                    <input type="radio" name="style_preference" value="natural" id="style2"><label for="style2"> 따뜻하고 아늑한 우드 내추럴</label><br>
+                    <input type="radio" name="style_preference" value="classic" id="style3"><label for="style3"> 고급스럽고 우아한 클래식</label>
+                </div>
+                <div class="form-group">
+                    <label><strong>2. 인테리어 예산 범위는?</strong></label>
+                    <input type="radio" name="budget_range" value="low" id="budget1"><label for="budget1"> 3천만원 이하 (부분 수리)</label><br>
+                    <input type="radio" name="budget_range" value="mid" id="budget2"><label for="budget2"> 3천만원 ~ 6천만원 (전체 리모델링 표준)</label><br>
+                    <input type="radio" name="budget_range" value="high" id="budget3"><label for="budget3"> 7천만원 이상 (하이엔드)</label>
+                </div>
+                <div class="form-group">
+                    <label><strong>3. 희망하는 시공 시기는?</strong></label>
+                    <input type="radio" name="time_frame" value="soon" id="time1"><label for="time1"> 3개월 이내</label><br>
+                    <input type="radio" name="time_frame" value="later" id="time2"><label for="time2"> 3개월 이후</label>
+                </div>
+                <div class="form-group">
+                    <label for="area_slider"><strong>4. 아파트 평형(실평수)을 선택해 주세요:</strong> <span id="area_value">30평</span></label>
+                    <input type="range" id="area_slider" name="area" min="20" max="40" value="30" oninput="document.getElementById('area_value').innerText = this.value + '평';">
+                </div>
+                <button type="button" onclick="calculateQuote()">나의 예상 견적 계산하기</button>
+                <p id="calculation_result" style="margin-top: 15px; font-weight: bold; color: #d63333;"></p>
+                <script>
+                    function calculateQuote() {
+                        const area = document.getElementById('area_slider').value;
+                        const budgetRange = document.querySelector('input[name="budget_range"]:checked');
+                        let quoteMessage = "";
+                        let baseCost = 0;
+
+                        if (budgetRange) {
+                            switch (budgetRange.value) {
+                                case 'low': baseCost = 100 * area; break; // 평당 100만원 가정
+                                case 'mid': baseCost = 150 * area; break; // 평당 150만원 가정
+                                case 'high': baseCost = 200 * area; break; // 평당 200만원 가정
+                            }
+                            quoteMessage = `선택하신 ${area}평, ${budgetRange.value === 'low' ? '부분 수리' : '전체 리모델링'} 기준으로 예상 비용은 대략 ${baseCost.toLocaleString()}만원 내외입니다. (정확한 견적은 전문가 상담을 통해 확인해주세요.)`;
+                        } else {
+                            quoteMessage = "예산 범위를 선택해 주세요.";
+                        }
+                        document.getElementById('calculation_result').innerText = quoteMessage;
+                    }
+                </script>
+            </form>
+        </section>
+
+        <!-- 상담 요청 섹션 -->
+        <section id="quote-form">
+            <h2>무료 맞춤 견적 상담 신청</h2>
+            <p>30평대 인테리어 전문가와 1:1 상담을 통해 정확한 견적을 받아보세요. 꼼꼼한 체크리스트를 바탕으로 고객님께 가장 적합한 '저렴한곳'을 추천해 드립니다.</p>
+            <form action="/submit-quote" method="post">
+                <div class="form-group">
+                    <label for="user_name">이름:</label>
+                    <input type="text" id="user_name" name="name" required placeholder="예: 홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="user_tel">연락처:</label>
+                    <input type="tel" id="user_tel" name="telephone" required placeholder="예: 010-0000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="user_area">시공 지역:</label>
+                    <select id="user_area" name="area" required>
+                        <option value="">지역 선택</option>
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="인천">인천</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="광주">광주</option>
+                        <option value="대전">대전</option>
+                        <option value="울산">울산</option>
+                        <option value="세종">세종</option>
+                        <option value="기타">기타 지방</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user_type">시공 유형:</label>
+                    <select id="user_type" name="type" required>
+                        <option value="">선택</option>
+                        <option value="전체 리모델링">전체 리모델링 (샷시 포함)</option>
+                        <option value="부분 수리">부분 수리 (주방/욕실/바닥 등)</option>
+                        <option value="도배/장판만">도배/장판만</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user_date">희망 시공 시작일:</label>
+                    <input type="date" id="user_date" name="start_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_message">상세 요청 사항 (자유 기재):</label>
+                    <textarea id="user_message" name="message" rows="4" placeholder="예: 주방은 우드톤, 거실은 화이트톤으로 하고 싶습니다. 2026년 3월에 입주 예정입니다."></textarea>
+                </div>
+                <button type="submit">무료 견적 상담 신청하기</button>
+            </form>
+        </section>
+
+        <!-- 신뢰성 외부 링크 (참고 자료) -->
+        <section id="external-references">
+            <h2>참고 자료 및 신뢰성 확보를 위한 외부 링크</h2>
+            <ul>
+                <li> 한국토지주택공사 (LH) 주택 건설 기준 및 정책 관련 자료: <a href="http://www.lh.or.kr" target="_blank" class="external-link">http://www.lh.or.kr</a></li>
+                <li> 국토교통부 주택 건설 및 리모델링 정책 관련 정보: <a href="http://www.molit.go.kr" target="_blank" class="external-link">http://www.molit.go.kr</a></li>
+                <li> 통계청 건축 자재 가격 변동 추이 (KOSIS): <a href="http://kosis.kr" target="_blank" class="external-link">http://kosis.kr</a></li>
+                <li> 국내 인테리어 트렌드 및 시장 분석 자료 (나무위키): <a href="https://namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank" class="external-link">https://namu.wiki/w/인테리어</a></li>
+                <li> 건설산업지식정보시스템 (KISCON): <a href="https://www.kiscon.net" target="_blank" class="external-link">https://www.kiscon.net</a></li>
+            </ul>
+        </section>
+
     </main>
-  </body>
-</html>
